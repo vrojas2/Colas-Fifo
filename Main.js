@@ -1,33 +1,22 @@
-import Proceso from "./Proceso.js";
-import Queue from "./Queue.js";
 import Probabilidad from "./Probabilidad.js";
+import Cola from "./Cola.js";
 
-let prob = new Probabilidad(39);
-
-class Procesador {
+class Main {
     constructor() {
-        this._cola = null;
-        this._procesos_totales = 0;
-        this._procesos_terminados = 0;
-        this._ciclos_vacios = 0;
+        this._probabilidad = new Probabilidad();
+        this._nuevaCola = new Cola(this._probabilidad);
     }
 
-    get cola() {
-        return this._cola;
+    ejecutarCola() {
+        this._nuevaCola.iniciarCola();
+        this.imprimirElementos();
     }
 
-    get procesosTerminados() {
-        return this._procesos_terminados;
-    }
-
-    get procesosTotales() {
-        return this._procesos_totales;
-    }
-
-    get ciclosVacios() {
-        return this._ciclos_vacios;
+    imprimirElementos() {
+        console.log(this._nuevaCola.elementosString);
     }
 
 }
 
-let procesador = new Procesador(300);
+let m = new Main();
+m.ejecutarCola();
